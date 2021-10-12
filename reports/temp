@@ -1,0 +1,15 @@
+
+\begin{figure}[h!]
+  \includegraphics[width=0.6\textwidth]{airrohr-12774640}
+  \caption{airrohr-12774640}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[width=0.6\textwidth]{airrohr-12771597}
+  \caption{airrohr-12771597}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.6\textwidth]{airrohr-12771597DHT22Messung}
+\caption{airrohr-12771597 mit DHT22 Luftfeuchtigkeit und Temperaturmessung}
+\end{figure}

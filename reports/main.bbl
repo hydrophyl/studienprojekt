@@ -1,0 +1,116 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/global//global/global}
+    \entry{airrohrbau}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6ea68ef9ec4add2c262c043dcdcc9e16}{%
+           family={SENSOR.COMMUNITY},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{fullhash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{bibnamehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{authorbibnamehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{authornamehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{authorfullhash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Baue deinen DIY-Sensor und werde ein Teil des weltweiten OpenData und CivicTech Netzwerks. Mit airRohr kannst du die Luftverschmutzung selbst messen.}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://sensor.community/de/sensors/airrohr/
+      \endverb
+      \verb{url}
+      \verb https://sensor.community/de/sensors/airrohr/
+      \endverb
+    \endentry
+    \entry{wiki}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6ea68ef9ec4add2c262c043dcdcc9e16}{%
+           family={SENSOR.COMMUNITY},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{fullhash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{bibnamehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{authorbibnamehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{authornamehash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \strng{authorfullhash}{6ea68ef9ec4add2c262c043dcdcc9e16}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Feinstaubsensor Wiki}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://github.com/opendata-stuttgart/meta/wiki
+      \endverb
+      \verb{url}
+      \verb https://github.com/opendata-stuttgart/meta/wiki
+      \endverb
+    \endentry
+    \entry{bezugsquellen}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4e88029cc9842439aec11466a6451b80}{%
+           family={Stuttgart.OpenData},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {de}%
+      }
+      \strng{namehash}{4e88029cc9842439aec11466a6451b80}
+      \strng{fullhash}{4e88029cc9842439aec11466a6451b80}
+      \strng{bibnamehash}{4e88029cc9842439aec11466a6451b80}
+      \strng{authorbibnamehash}{4e88029cc9842439aec11466a6451b80}
+      \strng{authornamehash}{4e88029cc9842439aec11466a6451b80}
+      \strng{authorfullhash}{4e88029cc9842439aec11466a6451b80}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Bezugsquellen Einzelteile}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/opendata-stuttgart/meta/wiki/Bezugsquellen-Einzelteile
+      \endverb
+      \verb{url}
+      \verb https://github.com/opendata-stuttgart/meta/wiki/Bezugsquellen-Einzelteile
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
