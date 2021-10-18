@@ -14,10 +14,6 @@ from zipfile import ZipFile
 #define sensor_id here
 sensor_id = "12776407"
 
-today = datetime.date.today()
-yesterday = today - timedelta(days = 1)
-today = str(today)
-
 #check if todays data already downloaded
 def check():  
     filename = 'data-esp8266-'+sensor_id+'-'+today+'.csv'
@@ -65,33 +61,55 @@ def filename():
 def plotting(df):
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-
     # Add traces
     fig.add_trace(
         go.Scatter(x=df['Time'], y=df['SDS_P1'], name="PM2.5", line=dict(color='#7355A3')),
         secondary_y=False,
     )
-
     fig.add_trace(
         go.Scatter(x=df['Time'], y=df['SDS_P2'], name="PM10", line=dict(color='#E47988')),
         secondary_y=True,
     )
-
     # Add figure title
     fig.update_layout(
         title_text="PM2.5 & PM10",
         height=600
     )
-
     # Set x-axis title
     fig.update_xaxes(title_text="Time")
-
     # Set y-axes titles
     fig.update_yaxes(title_text="PM2.5", secondary_y=False)
     fig.update_yaxes(title_text="PM10", secondary_y=True)
     return fig 
 
+def plotting_temperature_humidity(df):
+    # Create figure with secondary y-axis
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    # Add traces
+    fig.add_trace(
+        go.Scatter(x=df['Time'], y=df['Temp'], name="Temperatur", line=dict(color='#E47988')),
+        secondary_y=False,
+    )
+    fig.add_trace(
+        go.Scatter(x=df['Time'], y=df['Humidity'], name="Luftfeuchtigkeit", line=dict(color='#53a7fc')),
+        secondary_y=True,
+    )
+    # Add figure title
+    fig.update_layout(
+        title_text="Temperatur und Luftfeuchtigkeit",
+        height=600
+    )
+    # Set x-axis title
+    fig.update_xaxes(title_text="Time")
+    # Set y-axes titles
+    fig.update_yaxes(title_text="Temperatur [°C]", secondary_y=False)
+    fig.update_yaxes(title_text="Luftfeuchtigkeit [%]", secondary_y=True)
+    return fig 
+
 #Main program
+today = datetime.date.today()
+yesterday = today - timedelta(days = 1)
+today = str(today)
 daysinmonth = int(str(today)[-2:])
 if daysinmonth < 7:
     daysinweek = daysinmonth
@@ -106,20 +124,27 @@ link = 'https://api-rrd.madavi.de/data_csv/csv-files/'+ today + '/data-esp8266-'
 req = urllib.request.Request(link)
 try: 
     urllib.request.urlopen(req)
-    check()
     filename = 'data-esp8266-'+sensor_id+'-'+today+'.csv'
+    oldsize = os.stat(filename).st_size
+    check()
     print("Todays data will be downloaded!\n")
     wget.download(link)
+    size = os.stat(filename).st_size
+    if size == oldsize:
+       print("well") 
 except urllib.error.URLError as e:
     print(e.reason + "\n")
     print("Todays data isn't updated on server\n")
     print("Downloading yesterdays data\n")
     today = yesterday
     filename = 'data-esp8266-'+sensor_id+'-'+today+'.csv'
+    oldsize = os.stat(filename).st_size
     check()
     link = 'https://api-rrd.madavi.de/data_csv/csv-files/'+ today + '/data-esp8266-'+sensor_id+'-'+ today + '.csv'
     wget.download(link)
-
+    size = os.stat(filename).st_size
+    if size == oldsize:
+       print("well") 
 #create list that contains 7 days since today
 dayformat = "%Y-%m-%d"
 today = datetime.datetime.strptime(today, dayformat)
@@ -232,3 +257,28 @@ def get_df_all():
   df_all = pd.read_csv("./all/merged.csv",sep=",")
   df_all['Time'] = df_all['Time'].apply(convert_datetime)
   return df_all
+
+def get_df_today():
+    df = pd.read_csv(filename,sep=';')
+    df['Time'] = df['Time'].apply(convert_datetime)
+    return df
+
+def get_df_all():
+  df_all = pd.read_csv("./all/merged.csv",sep=",")
+  df_all['Time'] = df_all['Time'].apply(convert_datetime)
+  return df_all
+
+def get_df_lastmonth():
+  df_last_month = pd.read_csv("./"+last_month+"/merged.csv",sep=",",low_memory=False)
+  df_last_month['Time'] = pd.to_datetime(df_last_month['Time'], errors='coerce')
+  return df_last_month
+
+def get_df_month():
+  df_month = pd.read_csv("./month/merged.csv",sep=",")
+  df_month['Time'] = df_month['Time'].apply(convert_datetime)
+  return df_month
+
+def get_df_week():
+  df_week = pd.read_csv("./week/merged.csv",sep=",")
+  df_week['Time'] = df_week['Time'].apply(convert_datetime)
+  return df_week
