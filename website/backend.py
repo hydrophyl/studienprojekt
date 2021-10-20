@@ -156,12 +156,15 @@ req = urllib.request.Request(link)
 try:
     urllib.request.urlopen(req)
     filename = "data-esp8266-" + sensor_id + "-" + today + ".csv"
-    oldsize = os.stat(filename).st_size
+    files = os.listdir()
+    for file in files:
+        if str(file) == str(filename):
+            oldsize = os.stat(filename).st_size
     check()
     print("Todays data will be downloaded!\n")
     wget.download(link)
     size = os.stat(filename).st_size
-    if size == oldsize:
+    if oldsize > 0 and size == oldsize:
         print("well")
 except urllib.error.URLError as e:
     print(e.reason + "\n")
@@ -169,7 +172,10 @@ except urllib.error.URLError as e:
     print("Downloading yesterdays data\n")
     today = yesterday
     filename = "data-esp8266-" + sensor_id + "-" + today + ".csv"
-    oldsize = os.stat(filename).st_size
+    files = os.listdir()
+    for file in files:
+        if str(file) == str(filename):
+            oldsize = os.stat(filename).st_size
     check()
     link = (
         "https://api-rrd.madavi.de/data_csv/csv-files/"
@@ -182,7 +188,7 @@ except urllib.error.URLError as e:
     )
     wget.download(link)
     size = os.stat(filename).st_size
-    if size == oldsize:
+    if oldsize > 0 and size == oldsize:
         print("well")
 # create list that contains 7 days since today
 dayformat = "%Y-%m-%d"
