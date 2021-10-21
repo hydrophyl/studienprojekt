@@ -45,21 +45,37 @@ navbar = dbc.NavbarSimple(
 app.layout = dbc.Container(
     [
         html.Div([dcc.Location(id="url"), navbar]),
-        html.H4("Aktuelle Daten von letztem Tag"),
-        dcc.Graph(figure=fig1),
-        dcc.Graph(figure=fig11),
-        html.H4("Aktuelle Daten für eine Woche"),
-        dcc.Graph(figure=fig2),
-        dcc.Graph(figure=fig21),
-        html.H4("Aktuelle Daten für einem Monat"),
-        dcc.Graph(figure=fig3),
-        dcc.Graph(figure=fig31),
-        html.H4("Daten von letztem Monat"),
-        dcc.Graph(figure=fig4),
-        dcc.Graph(figure=fig41),
-        html.H4("Alle Daten"),
-        dcc.Graph(figure=fig5),
-        dcc.Graph(figure=fig51),
+        html.Div(
+            [
+                html.H4("Aktuelle Daten von letztem Tag"),
+                dcc.Graph(figure=fig1),
+                dcc.Graph(figure=fig11),
+            ]
+        ),
+        html.Div(
+            [
+                html.H4("Aktuelle Daten für eine Woche"),
+                dcc.Graph(figure=fig2),
+                dcc.Graph(figure=fig21),
+            ]
+        ),
+        html.Div(
+            [
+                html.H4("Aktuelle Daten für einem Monat"),
+                dcc.Graph(figure=fig3),
+                dcc.Graph(figure=fig31),
+            ]
+        ),
+        html.Div(
+            [
+                html.H4("Daten von letztem Monat"),
+                dcc.Graph(figure=fig4),
+                dcc.Graph(figure=fig41),
+            ]
+        ),
+        html.Div(
+            [html.H4("Alle Daten"), dcc.Graph(figure=fig5), dcc.Graph(figure=fig51),]
+        ),
     ]
 )
 
