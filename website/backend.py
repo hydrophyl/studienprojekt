@@ -68,6 +68,7 @@ try:
     files = os.listdir()
     for file in files:
         if str(file) == str(filename):
+            isFile = True
             oldsize = os.stat(filename).st_size
     check(sensor_id, today)
     print("\nTodays data will be downloaded!\n")
@@ -75,7 +76,7 @@ try:
     size = os.stat(filename).st_size
     path = "./month"
     isdir = os.path.isdir(path)
-    if oldsize > 0 and size == oldsize and isdir == True:
+    if isFile == True and oldsize > 0 and size == oldsize and isdir == True:
         print("\nlatest data is already downloaded!")
     else:
         try:
@@ -91,6 +92,7 @@ except urllib.error.URLError as e:
     files = os.listdir()
     for file in files:
         if str(file) == str(filename):
+            isFile == True
             oldsize = os.stat(filename).st_size
     check(sensor_id, today)
     link = (
@@ -106,7 +108,7 @@ except urllib.error.URLError as e:
     size = os.stat(filename).st_size
     path = "./month"
     isdir = os.path.isdir(path)
-    if oldsize > 0 and size == oldsize and isdir == True:
+    if isFile == True and oldsize > 0 and size == oldsize and isdir == True:
         print("\nlatest data is already downloaded!")
     else:
         try:
