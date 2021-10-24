@@ -60,6 +60,7 @@ last_month = int(str(today)[5:7])  # 10
 last_month = 12 if last_month == 1 else last_month - 1
 if len(str(last_month)) == 1:
     last_month = "0" + str(last_month)  # 09
+# delete_junk_csv(last_month)
 
 try:
     urllib.request.urlopen(req)
@@ -69,11 +70,13 @@ try:
         if str(file) == str(filename):
             oldsize = os.stat(filename).st_size
     check(sensor_id, today)
-    print("Todays data will be downloaded!\n")
+    print("\nTodays data will be downloaded!\n")
     wget.download(link)
     size = os.stat(filename).st_size
-    if oldsize > 0 and size == oldsize:
-        print("latest data is already downloaded!")
+    path = "./month"
+    isdir = os.path.isdir(path)
+    if oldsize > 0 and size == oldsize and isdir == True:
+        print("\nlatest data is already downloaded!")
     else:
         try:
             fetch_datas(sensor_id, week, month, last_month)
@@ -81,8 +84,8 @@ try:
             print(e)
 except urllib.error.URLError as e:
     print(e.reason + "\n")
-    print("Todays data isn't updated on server\n")
-    print("Downloading yesterdays data\n")
+    print("\nTodays data isn't updated on server\n")
+    print("\nDownloading yesterdays data\n")
     today = yesterday
     filename = "data-esp8266-" + sensor_id + "-" + today + ".csv"
     files = os.listdir()
@@ -101,8 +104,10 @@ except urllib.error.URLError as e:
     )
     wget.download(link)
     size = os.stat(filename).st_size
-    if oldsize > 0 and size == oldsize:
-        print("latest data is already downloaded!")
+    path = "./month"
+    isdir = os.path.isdir(path)
+    if oldsize > 0 and size == oldsize and isdir == True:
+        print("\nlatest data is already downloaded!")
     else:
         try:
             fetch_datas(sensor_id, week, month, last_month)

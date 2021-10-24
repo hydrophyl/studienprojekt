@@ -10,6 +10,17 @@ import glob
 from zipfile import ZipFile
 
 
+def delete_junk_csv(folder):
+    path = "./" + folder
+    isdir = os.path.isdir(path)
+    if isdir == False and int(folder) > 0:
+        shutil.rmtree("./" + folder)
+    files = os.listdir()
+    for file in files:
+        if file[-3:] == "csv":
+            os.remove(file)
+
+
 def check(sensor_id, today):
     filename = "data-esp8266-" + sensor_id + "-" + today + ".csv"
     files = os.listdir()
@@ -31,9 +42,9 @@ def checkfolder(folder):
     isdir = os.path.isdir(path)
     if isdir == True:
         shutil.rmtree(path)
-        print("% s removed successfully" % path + "\n")
+        print("\n % s removed successfully" % path + "\n")
     else:
-        print("Creating " + folder + "\n")
+        print("\nCreating " + folder + "\n")
 
 
 # download weekly datas
