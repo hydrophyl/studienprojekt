@@ -66,6 +66,7 @@ try:
     urllib.request.urlopen(req)
     filename = "data-esp8266-" + sensor_id + "-" + today + ".csv"
     files = os.listdir()
+    isFile = False
     for file in files:
         if str(file) == str(filename):
             isFile = True
@@ -90,6 +91,7 @@ except urllib.error.URLError as e:
     today = yesterday
     filename = "data-esp8266-" + sensor_id + "-" + today + ".csv"
     files = os.listdir()
+    isFile = False
     for file in files:
         if str(file) == str(filename):
             isFile == True
