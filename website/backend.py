@@ -60,8 +60,9 @@ last_month = int(str(today)[5:7])  # 10
 last_month = 12 if last_month == 1 else last_month - 1
 if len(str(last_month)) == 1:
     last_month = "0" + str(last_month)  # 09
-# delete_junk_csv(last_month)
 
+last_month = str(last_month)
+# delete_junk_csv(last_month)
 try:
     urllib.request.urlopen(req)
     filename = "data-esp8266-" + sensor_id + "-" + today + ".csv"
