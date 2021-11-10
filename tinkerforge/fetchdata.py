@@ -9,6 +9,7 @@ from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_particulate_matter import BrickletParticulateMatter
 
 #setting up packages
+import os
 import pandas as pd
 import datetime
 from time import strftime,localtime
@@ -24,14 +25,26 @@ df = pd.DataFrame({'Datum': [],
 def cb_pm_concentration(pm10, pm25, pm100):
     #Wiederholungen
     time_only = datetime.datetime.now().time().strftime("%H:%M:%S")
-    date_local = strftime("%d%b%Y", localtime())
+    date_local = strftime("%d/%m/%Y", localtime())
 
     #Messungsdaten einfuegen
     df.loc[len(df.index)] = [date_local,time_only,pm10,pm25,pm100]
 
-    #Update .csv Datei
-    df.to_csv(date_local + ".csv", index=False, encoding='utf8')
-
+    #Check if go to next day already?
+    files = os.listdir()
+    filename = date_local + ".csv"
+    for file in files:
+        if str(file) == str(filename):
+            df.to_csv(date_local + ".csv", index=False, encoding='utf8')
+        else:
+            #Empty pandas existed dataframe
+            df = pd.DataFrame({'Datum': [],
+                            'Zeit': [],
+                            'PM10': [],
+                            'PM25': [],
+                            'PM100': []})
+            df.to_csv(date_local + ".csv", index=False, encoding='utf8')
+            
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
