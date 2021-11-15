@@ -86,7 +86,7 @@ try:
         except urllib.error.URLError as e:
             print(e)
 except urllib.error.URLError as e:
-    print(e.reason + "\n")
+    print(e.reason)
     print("\nTodays data isn't updated on server\n")
     print("\nDownloading yesterdays data\n")
     today = yesterday
