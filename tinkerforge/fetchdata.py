@@ -14,19 +14,19 @@ import pandas as pd
 import datetime
 from time import strftime,localtime
 
-#Erstellung ein pandas dataframe
-df = pd.DataFrame({'Datum': [],
-                   'Zeit': [],
-                   'PM10': [],
-                   'PM25': [],
-                   'PM100': []})
 
 # Callback function for PM concentration callback
 def cb_pm_concentration(pm10, pm25, pm100):
     #Wiederholungen
     time_only = datetime.datetime.now().time().strftime("%H:%M:%S")
-    date_local = strftime("%d/%m/%Y", localtime())
+    date_local = strftime("%d%m%Y", localtime())
 
+    #Erstellung ein pandas dataframe
+    df = pd.DataFrame({'Datum': [],
+                    'Zeit': [],
+                    'PM10': [],
+                    'PM25': [],
+                    'PM100': []})
     #Messungsdaten einfuegen
     df.loc[len(df.index)] = [date_local,time_only,pm10,pm25,pm100]
 
