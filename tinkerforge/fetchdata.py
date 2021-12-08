@@ -10,6 +10,7 @@ from tinkerforge.bricklet_particulate_matter import BrickletParticulateMatter
 
 #setting up packages
 import os
+from os.path import exists
 import pandas as pd
 import datetime
 from time import strftime,localtime
@@ -33,18 +34,12 @@ def cb_pm_concentration(pm10, pm25, pm100):
     #Check if go to next day already?
     files = os.listdir()
     filename = date_local + ".csv"
-    for file in files:
-        if str(file) == str(filename):
-            df.to_csv(date_local + ".csv", index=False, encoding='utf8')
-        else:
-            #Empty pandas existed dataframe
-            df = pd.DataFrame({'Datum': [],
-                            'Zeit': [],
-                            'PM10': [],
-                            'PM25': [],
-                            'PM100': []})
-            df.to_csv(date_local + ".csv", index=False, encoding='utf8')
-            
+    file_exists = exists(filename)
+    if file_exists == False:
+        print("there is no file of today")
+    else:
+        print("there is already file of today, everything good!")
+        df.to_csv(filename, index=False, encoding='utf8')
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
